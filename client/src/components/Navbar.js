@@ -3,18 +3,48 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const NavWrap = styled.div`
-  background-color: greenyellow;
+  display: flex;
+  justify-content: space-between;
+  background-color: blueviolet;
+
+  a {
+    color: white;
+  }
+`;
+
+const NavLinkWrap = styled.div`
+  text-align: center;
+  display: inline-flex;
+  white-space: nowrap;
+  font-size: 28px;
+  margin-right: 5vw;
+  color: white;
+  a {
+    color: white;
+    a:visited {
+      color: lightgray;
+    }
+  }
+  .inner-nav {
+      margin: 0 12px;
+  }
 `;
 class Navbar extends Component {
   render() {
     return (
       <NavWrap>
-        <h1>Vagabond</h1>
-        <div>
-          <div>
-            <Link to="/">Home</Link>
+        <Link to="/">
+          <h1>Vagabond</h1>
+        </Link>
+        <NavLinkWrap>
+          <div className="inner-nav">
+            <Link to="/">Login</Link>
           </div>
-        </div>
+          <div className="inner-nav">
+            <Link to="#">Sign Up</Link>
+          </div>
+          
+        </NavLinkWrap>
       </NavWrap>
     );
   }
