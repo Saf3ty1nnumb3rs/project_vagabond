@@ -27,7 +27,7 @@ const NavLinkWrap = styled.div`
   font-size: 20px;
   margin-right: 8vw;
   color: white;
-  height: 8vw;
+  height: 6vw;
   align-items: center;
 
   a {
