@@ -23,7 +23,7 @@ class Header extends Component {
     render() {
         return (
             <HeadWrap>
-                <Segment>
+                <Segment raised padded>
                     <CityImgWrapper>
                         <img src={this.props.city.img} alt="" />
                     </CityImgWrapper>
