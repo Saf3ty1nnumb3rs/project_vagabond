@@ -34,7 +34,7 @@ class Api::PostsController < ApplicationController
     end
 
     def destroy
-        @city_posts = city.find(params[:city_id]).posts
+        @city_posts = City.find(params[:city_id]).posts
         @city_posts.find(params[:id]).destroy  
     end  
     
