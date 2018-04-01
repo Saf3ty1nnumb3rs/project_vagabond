@@ -44,6 +44,14 @@ class SinglePostView extends Component {
     });
   };
 
+  goHome = () => {
+      this.props.history.push("/")
+  }
+
+  goBackToCity = () => {
+    this.props.history.push(`/cities/${this.props.match.params.citiesId}`);
+  }
+
   render() {
     return (
       <PostWrap>
@@ -65,8 +73,8 @@ class SinglePostView extends Component {
               </Card.Content>
               <Card.Content extra>
                 <div className="ui two buttons">
-                  <Button primary>Home</Button>
-                  <Button color="green">City</Button>
+                  <Button onClick={this.goHome} primary>Home</Button>
+                  <Button onClick={this.goBackToCity} color="green">City</Button>
                 </div>
               </Card.Content>
             </Card>
