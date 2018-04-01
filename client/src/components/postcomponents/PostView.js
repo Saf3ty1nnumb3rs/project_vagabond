@@ -56,12 +56,6 @@ class PostView extends Component {
                     <Icon name="ban" />
                   </Button.Content>
                 </Button>
-                <Button animated color="green" onClick={this.props.toggleShowPost}>
-                  <Button.Content visible>Post</Button.Content>
-                  <Button.Content hidden>
-                    <Icon name="pin" />
-                  </Button.Content>
-                </Button>
               </Button.Group>
             </ButtonWrap>
           </Card.Content>

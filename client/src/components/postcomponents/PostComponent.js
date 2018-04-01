@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import PostEditView from "./PostEditView";
 import PostView from "./PostView"
+import DeleteView from "./DeleteView"
 
 
 
@@ -83,6 +84,17 @@ class PostComponent extends Component {
         {this.state.showPost ? (
           <PostView
             toggleShowEdit={this.toggleShowEdit}
+            toggleShowDelete={this.toggleShowDelete}
+            toggleShowPost={this.toggleShowPost}
+            index={this.props.index}
+            cityId={this.props.cityId}
+            posts={this.props.posts}
+            removePost={this.removePost}
+          /> ) : (
+            null
+          )}
+          {this.state.showDelete ? (
+          <DeleteView
             toggleShowDelete={this.toggleShowDelete}
             toggleShowPost={this.toggleShowPost}
             index={this.props.index}

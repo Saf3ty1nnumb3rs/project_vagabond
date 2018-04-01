@@ -59,9 +59,9 @@ class CreatePost extends Component {
     //3. Make axios call to CREATE a post, passing payload as argument
     await axios.post(`/api/cities/${this.props.cityId}/posts`, payload);
     //4. Execute the call to SHOW the post
-    await this.props.toggleShowAdd();
+    this.props.toggleShowAdd();
     //5. Make sure all posts are pulled from the database
-    await this.props.getSingleCity();
+    this.props.getSingleCity();
     //6. Clear state so your form is empty once again
     this.setState({ title: "", content: "", img: "" });
   };
