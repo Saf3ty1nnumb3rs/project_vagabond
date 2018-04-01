@@ -1,76 +1,114 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import axios from "axios";
+import PostEditView from "./PostEditView";
+import PostView from "./PostView"
+import DeleteView from "./DeleteView"
 
 
-const PostWrap = styled.div`
-img{
-    max-width:400px;
-    height: auto;
-}
 
 
-`
+
 class PostComponent extends Component {
-  removePost = async user => {
+  state = {
+    showEdit: false,
+    showDelete: false,
+    showPost: true
+  };
+  //DELETE post
+  
+
+  removePost = async post => {
     await axios.delete(
-      `/api/cities/${this.props.cityId}/posts/${this.props.posts._id}`
+      `/api/cities/${this.props.cityId}/posts/${
+        this.props.posts[this.props.index].id
+      }`
     );
-    await this.props.getAllposts();
+    await this.props.getSingleCity();
   };
-  handleChange = event => {
-    this.props.handlePostChange(event, this.props.posts._id);
-  };
-  updatePost = async Post => {
-    await axios.patch(
-      `/api/cities/${this.props.cityId}/posts/${this.props.posts._id}`,
-      post
-    );
-    await (res => {
-      this.props.getAllposts();
+
+  toggleShowPost = () => {
+    this.setState({
+      showEdit: false,
+      showDelete: false,
+      showPost: true
     });
+  };
+
+  toggleShowEdit = async () => {
+    await this.setState({ showEdit: !this.state.showEdit });
+    this.state.showEdit
+      ? await this.setState({
+          showDelete: false,
+          showPost: false
+        })
+      : await this.setState({
+          showDeleteView: false,
+          showPost: true
+        });
+  };
+
+  toggleShowDelete = async () => {
+    await this.setState({
+      showDelete: !this.state.showDelete
+    });
+
+    this.state.showDelete
+      ? await this.setState({
+          showEdit: false,
+          showPost: false
+        })
+      : await this.setState({
+          showEdit: false,
+          showPost: true
+        });
   };
 
   render() {
     return (
-      <PostWrap>
-        <Form>
-          <Input
-            focus
-            size="small"
-            type="text"
-            name="title"
-            value={this.props.posts.title}
-            onChange={this.handleChange}
-            onBlur={() => this.updatePost(this.props.posts)}
+      <div>
+        {this.state.showEdit ? (
+          <PostEditView
+            toggleShowEdit={this.toggleShowEdit}
+            toggleShowDelete={this.toggleShowDelete}
+            toggleShowPost={this.toggleShowPost}
+            handlePostChange={this.props.handlePostChange}
+            index={this.props.index}
+            cityId={this.props.cityId}
+            posts={this.props.posts}
+            getSingleCity={this.props.getSingleCity}
+            removePost={this.removePost}
           />
-          <Input
-            focus
-            size="small"
-            type="text"
-            name="img"
-            value={this.props.posts.img}
-            onChange={this.handleChange}
-            onBlur={() => this.updatePost(this.props.posts)}
-          />
-          <Image centered fluid>
-              <img src={this.props.post.img} alt="" />
-            </Image>
-          <br />
-          <TextArea
-            size="massive"
-            name="content"
-            value={this.props.posts.content}
-            onChange={this.handleChange}
-            onBlur={() => this.updatePost(this.props.posts)}
-          />
-          {/* <h4>Date:{this.props.posts.date}</h4> */}
-          <Button color="red" size="mini" onClick={this.removePost}>
-            Remove
-          </Button>
-        </Form>
-      </PostWrap>
-    );
+        ) : (
+          null
+        )}
+        {this.state.showPost ? (
+          <PostView
+            toggleShowEdit={this.toggleShowEdit}
+            toggleShowDelete={this.toggleShowDelete}
+            toggleShowPost={this.toggleShowPost}
+            index={this.props.index}
+            cityId={this.props.cityId}
+            posts={this.props.posts}
+            removePost={this.removePost}
+          /> ) : (
+            null
+          )}
+          {this.state.showDelete ? (
+          <DeleteView
+            toggleShowDelete={this.toggleShowDelete}
+            toggleShowPost={this.toggleShowPost}
+            index={this.props.index}
+            cityId={this.props.cityId}
+            posts={this.props.posts}
+            removePost={this.removePost}
+          /> ) : (
+            null
+          )}
+          </div>
+        )}
+     
+    
   }
-}
+
 
 export default PostComponent;

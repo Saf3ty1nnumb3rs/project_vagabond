@@ -1,22 +1,39 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Form, Button, TextArea, Container, Icon } from "semantic-ui-react";
+import {
+  Form,
+  Button,
+  TextArea,
+  Icon,
+  Card
+} from "semantic-ui-react";
 import styled from "styled-components";
 
-
+const FormWrap = styled.div`
+  max-width: 40vw;
+  height: auto;
+  min-height: 430px;
+  min-width: 300px;
+  margin: 10px auto;
+  align-content: center;
+  div.card {
+    min-height: 430px;
+    div.pad {
+      margin: 50px 2px;
+    }
+  }
+`;
 
 const ButtonWrap = styled.div`
   text-align: center;
-  margin-top: 10px;
+  margin: 50px auto;
 `;
 
 class CreatePost extends Component {
   state = {
-    newPost: {
-      title: "",
-      content: "",
-      img: ""
-    }
+    title: "",
+    content: "",
+    img: ""
   };
 
   handleChange = event => {
@@ -40,52 +57,56 @@ class CreatePost extends Component {
       content: this.state.content
     };
     //3. Make axios call to CREATE a post, passing payload as argument
-    await axios.post(`/api/cities/${this.state.cityId}/posts`, payload);
+    await axios.post(`/api/cities/${this.props.cityId}/posts`, payload);
     //4. Execute the call to SHOW the post
-    await this.props.toggleShowPost();
+    this.props.toggleShowAdd();
     //5. Make sure all posts are pulled from the database
-    await this.props.getAllPosts();
+    this.props.getSingleCity();
     //6. Clear state so your form is empty once again
-    this.setState({ title: "", content: "", img:"" });
+    this.setState({ title: "", content: "", img: "" });
   };
   render() {
     return (
       <FormWrap>
-        <Form onSubmit={this.props.createNewPost}>
-          <Form.Input
-            transparent
-            name="title"
-            onChange={this.props.handleChange}
-            type="text"
-            placeholder="Subject"
-            value={this.props.newPost.title}
-          />
-          <Form.Input
-            transparent
-            placeholder="Photo Url"
-            name="img"
-            onChange={this.props.handleChange}
-            value={this.props.newPost.img}
-          />
+        <Card centered raised>
+          <div className="pad">
+            <Form onSubmit={this.createNewPost}>
+              <Form.Input
+                className="inputs"
+                name="title"
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Subject"
+                value={this.state.title}
+              />
+              <Form.Input
+                className="inputs"
+                placeholder="Photo Url"
+                name="img"
+                onChange={this.handleChange}
+                value={this.state.img}
+              />
 
-          <TextArea
-            transparent
-            name="content"
-            onChange={this.props.handleChange}
-            placeholder="Comment"
-            type="text"
-            value={this.props.newPost.content}
-          />
+              <TextArea
+                className="inputs"
+                name="content"
+                onChange={this.handleChange}
+                placeholder="Comment"
+                type="text"
+                value={this.state.content}
+              />
 
-          <ButtonWrap>
-            <Button animated color="green" onClick={this.toggleShowShout}>
-              <Button.Content visible>Post Comment</Button.Content>
-              <Button.Content hidden>
-                <Icon name="comments" />
-              </Button.Content>
-            </Button>
-          </ButtonWrap>
-        </Form>
+              <ButtonWrap>
+                <Button animated color="green" type="submit">
+                  <Button.Content visible>Post Comment</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="comments" />
+                  </Button.Content>
+                </Button>
+              </ButtonWrap>
+            </Form>
+          </div>
+        </Card>
       </FormWrap>
     );
   }
