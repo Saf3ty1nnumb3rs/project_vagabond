@@ -17,6 +17,8 @@ const NavWrap = styled.div`
 `;
 
 const LogoWrap = styled.div`
+ display: inline-flex;
+ justify-content: space-around;
  margin-left: 10vw;
 `
 
@@ -43,12 +45,16 @@ const NavLinkWrap = styled.div`
 `;
 class Navbar extends Component {
   render() {
+    console.log(this.props.cities[0])
     return (
       <NavWrap>
         <LogoWrap>
           <Link to="/">
             <h1>Vagabond</h1>
           </Link>
+          <div>
+            <h1></h1>
+          </div>
         </LogoWrap>
         <NavLinkWrap>
           <Button color="purple" className="inner-nav">
