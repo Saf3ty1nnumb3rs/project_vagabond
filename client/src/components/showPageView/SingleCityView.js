@@ -59,6 +59,8 @@ class SingleCityView extends Component {
               cityId={this.props.match.params.id}
               getSingleCity={this.getSingleCity}
               toggleShowAdd={this.toggleShowAdd}
+              posts={this.state.posts}
+              {...this.props}
             />
             <ButtonWrap>
               <Button animated color="green" onClick={this.toggleShowAdd}>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
+import { Link } from 'react-router-dom'
 import {  Image, Button, Card, Icon } from "semantic-ui-react";
 
 
@@ -33,12 +33,14 @@ class PostView extends Component {
             <Card.Header>
               {this.props.posts[this.props.index].title}
             </Card.Header>
+            <Link to={`/cities/${this.props.posts[this.props.index].city_id}/posts/${this.props.posts[this.props.index].id}`}>
             <Image>
               <img
                 src={this.props.posts[this.props.index].img}
                 alt={this.props.posts[this.props.index].title}
               />
             </Image>
+            </Link>
             <Card.Description>
               {this.props.posts[this.props.index].content}
             </Card.Description>

@@ -1,12 +1,7 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom'
 import axios from "axios";
-import {
-  Form,
-  Button,
-  TextArea,
-  Icon,
-  Card
-} from "semantic-ui-react";
+import { Form, Button, TextArea, Icon, Card } from "semantic-ui-react";
 import styled from "styled-components";
 
 const FormWrap = styled.div`
@@ -31,41 +26,58 @@ const ButtonWrap = styled.div`
 
 class CreatePost extends Component {
   state = {
-    title: "",
-    content: "",
-    img: ""
+    new: {
+      title: "",
+      content: "",
+      img: ""
+    },
+    redirect: false
   };
 
   handleChange = event => {
     //1. Set variable to event target
     const name = event.target.name;
     //2. Spread props for new state
-    const newPost = { ...this.state };
+    const newPost = { ...this.state.new };
     //3. Set the state value equal to the entered value
     newPost[name] = event.target.value;
     //4. Set the state equal to the entered value
-    this.setState(newPost);
+    this.setState( { new: newPost });
   };
+
+  // redirectToTarget = () => {
+  //   const cityId = this.props.cityId
+  //   console.log(this.props.cityId);
+  //   console.log(this.props.posts)
+  //   this.props.history.push(`/cities/${cityId}/posts`);
+  // }
 
   createNewPost = async event => {
     //1. Stop form from submitting
     event.preventDefault();
     //2. Create a variable that contains state - titled payload
     const payload = {
-      title: this.state.title,
-      img: this.state.img,
-      content: this.state.content
+      title: this.state.new.title,
+      img: this.state.new.img,
+      content: this.state.new.content
     };
     //3. Make axios call to CREATE a post, passing payload as argument
     await axios.post(`/api/cities/${this.props.cityId}/posts`, payload);
     //4. Execute the call to SHOW the post
-    this.props.toggleShowAdd();
+
     //5. Make sure all posts are pulled from the database
-    this.props.getSingleCity();
+    await this.props.getSingleCity();
     //6. Clear state so your form is empty once again
-    this.setState({ title: "", content: "", img: "" });
+    await this.setState({
+      new: { title: "", content: "", img: "" },
+      redirect: true
+    });
+    this.props.toggleShowAdd();
   };
   render() {
+    if (this.state.redirect) {
+      return (<Redirect to={`/cities/${this.props.cityId}/posts/${this.props.posts[this.props.posts.length - 1].id}`}/>)
+    }
     return (
       <FormWrap>
         <Card centered raised>

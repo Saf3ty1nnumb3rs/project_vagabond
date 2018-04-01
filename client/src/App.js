@@ -5,6 +5,9 @@ import axios from "axios";
 import LandingView from "./components/LandingView";
 import Navbar from "./components/Navbar";
 import SingleCityView from "./components/showPageView/SingleCityView";
+import SinglePostView from "./components/postviewcomponents/SinglePostView"
+
+
 
 class App extends Component {
   state = {
@@ -29,7 +32,11 @@ class App extends Component {
   render() {
     const SingleCityWrapper = props => {
       return <SingleCityView cities={this.state.cities} {...props} />;
-    };
+    }
+    const SinglePostWrapper = props => {
+      return <SinglePostView cities={this.state.cities} {...props} />;
+    }  
+    
     return (
       <Router>
         <div className="App">
@@ -37,6 +44,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={LandingView} />
             <Route exact path="/cities/:id" render={SingleCityWrapper} />
+            <Route exact path="/cities/:citiesId/posts/:id" render={SinglePostWrapper} />
           </Switch>
         </div>
       </Router>
