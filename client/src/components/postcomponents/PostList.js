@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PostComponent from "./PostComponent";
 import styled from "styled-components";
-import { Card, Grid } from "semantic-ui-react";
+import { Card, Grid, Segment } from "semantic-ui-react";
 
 const FlexPosts = styled.div`
   display: flex;
@@ -9,25 +9,34 @@ const FlexPosts = styled.div`
   justify-content: space-around;
   align-items: flex-start;
   align-content: flex-start;
+  margin: 25px auto;
 `;
+
+
+
 class PostList extends Component {
   render() {
     return (
       <FlexPosts>
         <Segment>
-          <Grid.Row columns={3}>
-            {this.props.posts.map((song, i) => {
+          <Grid stackable>
+            {this.props.posts.map((post, i) => {
               return (
-                <Grid.Column>
+               
+                 
                   <PostComponent
+                    handlePostChange={this.props.handlePostChange}
                     key={post.id}
                     index={i}
-                    songs={this.props.posts}
+                    cityId = {this.props.cityId}
+                    posts={this.props.posts}
+                    getSingleCity = {this.props.getSingleCity}
                   />
-                </Grid.Column>
+                  
+                
               );
             })}
-          </Grid.Row>
+          </Grid>
         </Segment>
       </FlexPosts>
     );

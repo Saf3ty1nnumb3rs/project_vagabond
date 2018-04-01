@@ -1,41 +1,96 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
-import axios from 'axios';
-import Header from './Header'
+import { Grid, Button, Icon } from "semantic-ui-react";
+import axios from "axios";
+import Header from "./Header";
+import PostList from "../postcomponents/PostList";
+import CreatePost from "../postcomponents/CreatePost";
 
+const ButtonWrap = styled.div`
+  text-align: center;
+  margin: 28px auto;
+`;
 
 
 class SingleCityView extends Component {
-    state = {
-        city: {},
-        posts: []
-    }
+  state = {
+    city: {},
+    posts: [],
+    showCreatePost: false
+  };
 
-    componentDidMount() {
-        this.getSingleCity()
-    }
+  componentDidMount() {
+    this.getSingleCity();
+  }
 
+  toggleShowAdd = () => {
+    this.setState({ showCreatePost: !this.state.showCreatePost });
+  };
 
-    getSingleCity = async () => {
-        const cityId = this.props.match.params.id
-        const res = await axios.get(`/api/cities/${cityId}`)
-        this.setState({
-            city: res.data.city,
-            posts: res.data.posts
-        })
-        
-    };
+  getSingleCity = async () => {
+    const cityId = this.props.match.params.id;
+    const res = await axios.get(`/api/cities/${cityId}`);
+    this.setState({
+      city: res.data.city,
+      posts: res.data.posts
+    });
+  };
 
-    render() {
-        return (
-            <div>
-               <Header city={this.state.city}/>
-         
-            </div>
-        );
-    }
+  handlePostChange = (event, id) => {
+    console.log(id);
+    const newPosts = [...this.state.posts];
+    console.log(newPosts);
+    const postToChange = newPosts.find(post => post.id === id);
+    console.log(postToChange);
+    postToChange[event.target.name] = event.target.value;
+    console.log(postToChange[event.target.value]);
+
+    this.setState({ posts: newPosts });
+  };
+
+  render() {
+    return (
+      <div>
+        <Header city={this.state.city} />
+
+        {this.state.showCreatePost ? (
+          <Grid.Column computer={6} tablet={8} mobile={16}>
+            <CreatePost
+              cityId={this.props.match.params.id}
+              getSingleCity={this.getSingleCity}
+              toggleShowAdd={this.toggleShowAdd}
+            />
+            <ButtonWrap>
+              <Button animated color="green" onClick={this.toggleShowAdd}>
+                <Button.Content visible>Post Board</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="comments" />
+                </Button.Content>
+              </Button>
+            </ButtonWrap>
+          </Grid.Column>
+        ) : (
+          <Grid.Column computer={6} tablet={8} mobile={16}>
+            <PostList
+              handlePostChange={this.handlePostChange}
+              posts={this.state.posts}
+              cityId={this.props.match.params.id}
+              getSingleCity={this.getSingleCity}
+            />
+            <ButtonWrap>
+              <Button animated color="green" onClick={this.toggleShowAdd}>
+                <Button.Content visible>Add New Post</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="comments" />
+                </Button.Content>
+              </Button>
+            </ButtonWrap>
+          </Grid.Column>
+        )}
+      </div>
+    );
+  }
 }
 
 export default SingleCityView;
