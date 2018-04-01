@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import axios from "axios";
-import { Form, Input, Image, TextArea, Button, Card } from "semantic-ui-react";
+import { Form, Image, TextArea, Button, Card, Icon } from "semantic-ui-react";
 
 const PostWrap = styled.div`
   max-width: 40vw;
@@ -81,10 +81,27 @@ class PostEditView extends Component {
                   />
                   {/* <h4>Date:{this.props.posts.date}</h4> */}
                   <ButtonWrap>
-                    <Button primary size="mini" onClick={this.props.toggleShowEdit}>
-                      Edit
-                    </Button>
-                  </ButtonWrap>
+              <Button.Group>
+                <Button animated primary onClick={this.props.toggleShowEdit}>
+                  <Button.Content visible>Edit</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="edit" />
+                  </Button.Content>
+                </Button>
+                <Button animated color="red" onClick={this.props.toggleShowDelete}>
+                  <Button.Content visible>Delete</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="ban" />
+                  </Button.Content>
+                </Button>
+                <Button animated color="green" onClick={this.props.toggleShowPost}>
+                  <Button.Content visible>Post</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="pin" />
+                  </Button.Content>
+                </Button>
+              </Button.Group>
+            </ButtonWrap>
                 </Form>
               </div>
             </Card>

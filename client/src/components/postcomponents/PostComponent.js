@@ -1,34 +1,21 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import axios from "axios";
-import { Form, Input, Image, TextArea, Button, Card } from "semantic-ui-react";
 import PostEditView from "./PostEditView";
+import PostView from "./PostView"
 
-const PostWrap = styled.div`
-  max-width: 40vw;
-  height: auto;
-  min-height: 430px;
-  min-width: 300px;
-  margin: 10px auto;
-  align-content: center;
-  div.card {
-    min-height: 430px;
-    div.pad {
-      margin: 20px 15px;
-    }
-  }
-`;
 
-const ButtonWrap = styled.div`
-  text-align: center;
-  margin: 20px auto;
-`;
+
+
 
 class PostComponent extends Component {
   state = {
-    showEdit: false
+    showEdit: false,
+    showDelete: false,
+    showPost: true
   };
   //DELETE post
+  
+
   removePost = async post => {
     await axios.delete(
       `/api/cities/${this.props.cityId}/posts/${
@@ -38,58 +25,78 @@ class PostComponent extends Component {
     await this.props.getSingleCity();
   };
 
-  toggleShowEdit = () => {
-    this.setState({ showEdit: !this.state.showEdit });
+  toggleShowPost = () => {
+    this.setState({
+      showEdit: false,
+      showDelete: false,
+      showPost: true
+    });
   };
-  
+
+  toggleShowEdit = async () => {
+    await this.setState({ showEdit: !this.state.showEdit });
+    this.state.showEdit
+      ? await this.setState({
+          showDelete: false,
+          showPost: false
+        })
+      : await this.setState({
+          showDeleteView: false,
+          showPost: true
+        });
+  };
+
+  toggleShowDelete = async () => {
+    await this.setState({
+      showDelete: !this.state.showDelete
+    });
+
+    this.state.showDelete
+      ? await this.setState({
+          showEdit: false,
+          showPost: false
+        })
+      : await this.setState({
+          showEdit: false,
+          showPost: true
+        });
+  };
+
   render() {
     return (
       <div>
         {this.state.showEdit ? (
           <PostEditView
             toggleShowEdit={this.toggleShowEdit}
+            toggleShowDelete={this.toggleShowDelete}
+            toggleShowPost={this.toggleShowPost}
             handlePostChange={this.props.handlePostChange}
-            key={this.props.key}
             index={this.props.index}
             cityId={this.props.cityId}
             posts={this.props.posts}
             getSingleCity={this.props.getSingleCity}
+            removePost={this.removePost}
           />
         ) : (
-          <PostWrap>
-            <Card centered raised>
-              <Card.Content>
-                <Card.Header>
-                  {this.props.posts[this.props.index].title}
-                </Card.Header>
-                <Image>
-                  <img
-                    src={this.props.posts[this.props.index].img}
-                    alt={this.props.posts[this.props.index].title}
-                  />
-                </Image>
-                <Card.Description>
-                  {this.props.posts[this.props.index].content}
-                </Card.Description>
-                <Button.Group>
-                  <ButtonWrap>
-                    <Button primary size="mini" onClick={this.toggleShowEdit}>
-                      Edit Post
-                    </Button>
-                  </ButtonWrap>
-                  <ButtonWrap>
-                    <Button color="red" size="mini" onClick={this.removePost}>
-                      Remove
-                    </Button>
-                  </ButtonWrap>
-                </Button.Group>
-              </Card.Content>
-            </Card>
-          </PostWrap>
+          null
         )}
-      </div>
-    );
+        {this.state.showPost ? (
+          <PostView
+            toggleShowEdit={this.toggleShowEdit}
+            toggleShowDelete={this.toggleShowDelete}
+            toggleShowPost={this.toggleShowPost}
+            index={this.props.index}
+            cityId={this.props.cityId}
+            posts={this.props.posts}
+            removePost={this.removePost}
+          /> ) : (
+            null
+          )}
+          </div>
+        )}
+     
+    
   }
-}
+
 
 export default PostComponent;

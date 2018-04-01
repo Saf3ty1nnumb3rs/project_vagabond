@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { Grid, Button, Icon } from "semantic-ui-react";
 import axios from "axios";
 import Header from "./Header";

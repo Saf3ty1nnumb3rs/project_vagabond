@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Segment, Button } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 
 const HeadWrap = styled.div`
 margin-top: 65px;
