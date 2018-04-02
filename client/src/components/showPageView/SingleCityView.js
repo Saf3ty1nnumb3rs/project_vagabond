@@ -52,7 +52,14 @@ class SingleCityView extends Component {
     return (
       <div>
         <Header city={this.state.city} />
-
+        <ButtonWrap>
+              <Button animated color="green" onClick={this.toggleShowAdd}>
+                <Button.Content visible>Add New Post</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="comments" />
+                </Button.Content>
+              </Button>
+            </ButtonWrap>
         {this.state.showCreatePost ? (
           <Grid.Column computer={6} tablet={8} mobile={16}>
             <CreatePost
@@ -62,14 +69,6 @@ class SingleCityView extends Component {
               posts={this.state.posts}
               {...this.props}
             />
-            <ButtonWrap>
-              <Button animated color="green" onClick={this.toggleShowAdd}>
-                <Button.Content visible>Post Board</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="comments" />
-                </Button.Content>
-              </Button>
-            </ButtonWrap>
           </Grid.Column>
         ) : (
           <Grid.Column computer={6} tablet={8} mobile={16}>
@@ -79,14 +78,7 @@ class SingleCityView extends Component {
               cityId={this.props.match.params.id}
               getSingleCity={this.getSingleCity}
             />
-            <ButtonWrap>
-              <Button animated color="green" onClick={this.toggleShowAdd}>
-                <Button.Content visible>Add New Post</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="comments" />
-                </Button.Content>
-              </Button>
-            </ButtonWrap>
+            
           </Grid.Column>
         )}
       </div>

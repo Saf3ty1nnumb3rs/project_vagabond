@@ -74,6 +74,9 @@ class CreatePost extends Component {
     });
     this.props.toggleShowAdd();
   };
+
+
+  
   render() {
     if (this.state.redirect) {
       console.log(`/cities/${this.props.cityId}/posts/${this.props.posts[0].id}`)
