@@ -39,7 +39,7 @@ const NavLinkWrap = styled.div`
 
   a {
     text-align: center;
-    color: white;
+    color: black;
     a:visited {
       color: lightgray;
     }
@@ -70,7 +70,7 @@ class Navbar extends Component {
       <Dropdown.Menu color="purple">
         {this.props.cities.map((city) => {
           return(
-          <Dropdown.Item href={`/cities/${city.id}`} >{city.name}</Dropdown.Item>
+            <Dropdown.Item as={Link} to={`/cities/${city.id}`}>{city.name}</Dropdown.Item>
         )
         })}
       </Dropdown.Menu>
