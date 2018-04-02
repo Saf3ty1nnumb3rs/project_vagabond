@@ -10,7 +10,7 @@ const ButtonWrap = styled.div`
   text-align: center;
   margin: 28px auto;
 `;
-
+const HeaderWrapper = styled.div
 
 class SingleCityView extends Component {
   state = {
@@ -18,17 +18,25 @@ class SingleCityView extends Component {
     posts: [],
     showCreatePost: false
   };
-
-  componentDidMount() {
-    this.getSingleCity();
+  
+  componentWillReceiveProps(nextProps){
+    if ( nextProps != this.props){
+      this.getSingleCity(nextProps.match.params.id);
+    } 
+    
+    
+    console.log(nextProps)
+    console.log(this.props)
   }
-
+  componentDidMount() {
+    this.getSingleCity(this.props.match.params.id);
+  }
+  // this changes the value of the showCreatePost from true to false
   toggleShowAdd = () => {
     this.setState({ showCreatePost: !this.state.showCreatePost });
   };
 
-  getSingleCity = async () => {
-    const cityId = this.props.match.params.id;
+  getSingleCity = async (cityId) => {
     const res = await axios.get(`/api/cities/${cityId}`);
     this.setState({
       city: res.data.city,
@@ -53,13 +61,13 @@ class SingleCityView extends Component {
       <div>
         <Header city={this.state.city} />
         <ButtonWrap>
-              <Button animated color="green" onClick={this.toggleShowAdd}>
-                <Button.Content visible>Add New Post</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="comments" />
-                </Button.Content>
-              </Button>
-            </ButtonWrap>
+          <Button animated color="green" onClick={this.toggleShowAdd}>
+            <Button.Content visible>Add New Post</Button.Content>
+            <Button.Content hidden>
+              <Icon name="comments" />
+            </Button.Content>
+          </Button>
+        </ButtonWrap>
         {this.state.showCreatePost ? (
           <Grid.Column computer={6} tablet={8} mobile={16}>
             <CreatePost
@@ -71,16 +79,16 @@ class SingleCityView extends Component {
             />
           </Grid.Column>
         ) : (
-          <Grid.Column computer={6} tablet={8} mobile={16}>
-            <PostList
-              handlePostChange={this.handlePostChange}
-              posts={this.state.posts}
-              cityId={this.props.match.params.id}
-              getSingleCity={this.getSingleCity}
-            />
-            
-          </Grid.Column>
-        )}
+            <Grid.Column computer={6} tablet={8} mobile={16}>
+              <PostList
+                handlePostChange={this.handlePostChange}
+                posts={this.state.posts}
+                cityId={this.props.match.params.id}
+                getSingleCity={this.getSingleCity}
+              />
+
+            </Grid.Column>
+          )}
       </div>
     );
   }
