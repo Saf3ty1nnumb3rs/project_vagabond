@@ -15,6 +15,7 @@ const CityImgWrapper = styled.div`
 img {
     width: 80vw;
     border-radius: 3%;
+    margin-bottom: 50px;
 }
 
 `
