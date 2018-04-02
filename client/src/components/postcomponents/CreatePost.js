@@ -12,7 +12,8 @@ const FormWrap = styled.div`
   margin: 10px auto;
   align-content: center;
   div.card {
-    min-height: 430px;
+    min-height: 540px;
+    max-height: 540px;
     div.pad {
       margin: 50px 2px;
     }
