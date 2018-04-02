@@ -22,7 +22,7 @@ class SingleCityView extends Component {
   componentDidMount() {
     this.getSingleCity();
   }
-
+// this changes the value of the showCreatePost from true to false
   toggleShowAdd = () => {
     this.setState({ showCreatePost: !this.state.showCreatePost });
   };
