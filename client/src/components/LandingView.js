@@ -9,8 +9,18 @@ position: fixed;
 height: 100vh;
 width: 100vw;
 .letter-box {
-    margin-top: 50px;
-    color: white;
+    display: flex;
+	position: fixed;
+	top: 26vh;
+	color: white;
+	margin: 0 10vw 20vw 50vw;
+	background-color: #88888875;
+	border-bottom: 1px solid purple;
+	border-top: 1px solid purple;
+	padding: 1em 2em;
+    span {
+        font-family: 'Permanent Marker', cursive;
+    }
 }
 
 
@@ -21,7 +31,7 @@ class LandingView extends Component {
         return (
             <LandingWrap>
                 <div className="letter-box">
-                <h1>Welcome to Vagabond, James Vagabond</h1>
+                <h1>Welcome to <span>Vagabond</span></h1>
                 </div>
                 
 

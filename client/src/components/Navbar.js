@@ -21,6 +21,10 @@ const LogoWrap = styled.div`
   display: inline-flex;
   justify-content: space-around;
   margin-left: 10vw;
+  h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 48px;
+  }
 `;
 
 const NavLinkWrap = styled.div`
@@ -61,9 +65,9 @@ class Navbar extends Component {
           <Button color="purple" className="inner-nav">
             <Link to="#">Sign Up</Link>
           </Button>
-          <Menu compact>
-    <Dropdown item text='Cities'>
-      <Dropdown.Menu>
+          <Menu color="purple" compact>
+    <Dropdown button item text='Cities' color="purple">
+      <Dropdown.Menu color="purple">
         {this.props.cities.map((city) => {
           return(
           <Dropdown.Item href={`/cities/${city.id}`} >{city.name}</Dropdown.Item>

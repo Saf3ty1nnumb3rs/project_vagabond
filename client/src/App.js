@@ -2,12 +2,18 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
+import { injectGlobal } from "styled-components";
+
+
 import LandingView from "./components/LandingView";
 import Navbar from "./components/Navbar";
 import SingleCityView from "./components/showPageView/SingleCityView";
 import SinglePostView from "./components/postviewcomponents/SinglePostView"
 
 
+injectGlobal`
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+`
 
 class App extends Component {
   state = {
@@ -44,9 +50,6 @@ class App extends Component {
     }  
 
 
-    // const NavBarWrapper = (props) =>{
-    //   <Navbar {...props} />
-    // }
     
     return (
       <Router>
