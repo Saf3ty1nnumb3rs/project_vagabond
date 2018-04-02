@@ -51,6 +51,7 @@ class Navbar extends Component {
           <Link to="/">
             <h1>Vagabond</h1>
           </Link>
+          <h1>{!this.props.city_name ? null : this.props.city_name}</h1>
         </LogoWrap>
         <NavLinkWrap>
           <Button color="purple" className="inner-nav">

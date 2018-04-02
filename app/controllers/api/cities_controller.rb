@@ -2,10 +2,10 @@ class Api::CitiesController < ApplicationController
     
     def index
         @cities = City.all
-        @cityname = City.find(params[:id]),name
+      
         render json: {
-            cities: @cities,
-            cityname: @cityname
+            cities: @cities
+ 
         }
     end
     
