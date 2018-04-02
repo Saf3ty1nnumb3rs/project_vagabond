@@ -85,7 +85,7 @@ class CreatePost extends Component {
     }
     return (
       <FormWrap>
-        <Card centered raised>
+        <Card centered raised invert>
           <div className="pad">
             <Form onSubmit={this.createNewPost}>
               <Form.Input
