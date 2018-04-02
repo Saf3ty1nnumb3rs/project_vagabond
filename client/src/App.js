@@ -11,7 +11,9 @@ import SinglePostView from "./components/postviewcomponents/SinglePostView"
 
 class App extends Component {
   state = {
-    cities: [],
+    cities: [{
+        id: ''
+      }],
     cityname: "",
     error: ""
   };
@@ -40,6 +42,11 @@ class App extends Component {
     const SinglePostWrapper = props => {
       return <SinglePostView cities={this.state.cities} {...props} />;
     }  
+
+
+    // const NavBarWrapper = (props) =>{
+    //   <Navbar {...props} />
+    // }
     
     return (
       <Router>

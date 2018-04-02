@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import { Button, Dropdown, Menu } from "semantic-ui-react";
+
 
 const NavWrap = styled.div`
   display: flex;
@@ -60,6 +61,17 @@ class Navbar extends Component {
           <Button color="purple" className="inner-nav">
             <Link to="#">Sign Up</Link>
           </Button>
+          <Menu compact>
+    <Dropdown item text='Cities'>
+      <Dropdown.Menu>
+        {this.props.cities.map((city) => {
+          return(
+          <Dropdown.Item href={`/cities/${city.id}`} >{city.name}</Dropdown.Item>
+        )
+        })}
+      </Dropdown.Menu>
+    </Dropdown>
+  </Menu>
         </NavLinkWrap>
       </NavWrap>
     );
