@@ -9,6 +9,7 @@ const FlexPosts = styled.div`
   align-items: flex-start;
   align-content: flex-start;
   margin: 25px auto;
+  
 `;
 
 

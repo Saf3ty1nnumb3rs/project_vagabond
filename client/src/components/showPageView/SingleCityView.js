@@ -20,7 +20,7 @@ class SingleCityView extends Component {
   };
   
   componentWillReceiveProps(nextProps){
-    if ( nextProps != this.props){
+    if ( nextProps !== this.props){
       this.getSingleCity(nextProps.match.params.id);
     } 
     
