@@ -7,13 +7,13 @@ import styled from "styled-components";
 const FormWrap = styled.div`
   max-width: 40vw;
   height: auto;
-  min-height: 430px;
+  min-height: 530px;
   min-width: 300px;
   margin: 10px auto;
   align-content: center;
   div.card {
     min-height: 540px;
-    max-height: 540px;
+   
     div.pad {
       margin: 50px 2px;
     }
@@ -22,7 +22,7 @@ const FormWrap = styled.div`
 
 const ButtonWrap = styled.div`
   text-align: center;
-  margin: 50px auto;
+  margin: 20px auto;
 `;
 
 class CreatePost extends Component {

@@ -6,8 +6,7 @@ import {  Image, Button, Card, Icon } from "semantic-ui-react";
 
 const PostWrap = styled.div`
   max-width: 40vw;
-  height: auto;
-  min-height: 430px;
+  max-height: 500px;
   min-width: 300px;
   margin: 10px auto;
   align-content: center;
