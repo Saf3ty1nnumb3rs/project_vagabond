@@ -12,6 +12,7 @@ import SinglePostView from "./components/postviewcomponents/SinglePostView"
 class App extends Component {
   state = {
     cities: [],
+    cityname: "",
     error: ""
   };
 
@@ -22,7 +23,10 @@ class App extends Component {
   getAllCities = async () => {
     try {
       const response = await axios.get("/api/cities");
-      this.setState({ cities: response.data.cities });
+      console.log(response.data)
+      this.setState({ cities: response.data.cities,
+        cityname: response.data.cityname
+       });
     } catch (err) {
       console.log(err);
       this.setState({ err: err.message });
@@ -40,7 +44,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Navbar cities={this.state.cities} />
+          <Navbar {...this.props} cities={this.state.cities} cityname={this.props.city_name} />
           <Switch>
             <Route exact path="/" component={LandingView} />
             <Route exact path="/cities/:id" render={SingleCityWrapper} />

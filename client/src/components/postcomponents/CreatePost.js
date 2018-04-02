@@ -76,7 +76,8 @@ class CreatePost extends Component {
   };
   render() {
     if (this.state.redirect) {
-      return (<Redirect to={`/cities/${this.props.cityId}/posts/${this.props.posts[this.props.posts.length - 1].id}`}/>)
+      console.log(`/cities/${this.props.cityId}/posts/${this.props.posts[0].id}`)
+      return (<Redirect to={`/cities/${this.props.cityId}/posts/${this.props.posts[0].id}`}/>)
     }
     return (
       <FormWrap>
