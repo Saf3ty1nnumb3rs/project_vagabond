@@ -13,6 +13,7 @@ const FormWrap = styled.div`
   align-content: center;
   div.card {
     min-height: 540px;
+    background-color: lightgray;
    
     div.pad {
       margin: 50px 2px;
@@ -85,7 +86,7 @@ class CreatePost extends Component {
     }
     return (
       <FormWrap>
-        <Card centered raised invert>
+        <Card centered raised>
           <div className="pad">
             <Form onSubmit={this.createNewPost}>
               <Form.Input
