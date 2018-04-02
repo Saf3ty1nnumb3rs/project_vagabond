@@ -5,7 +5,7 @@ import { Segment } from "semantic-ui-react";
 const HeadWrap = styled.div`
 margin-top: 65px;
 div.segment {
-    background-color: pink;
+    background-color: silver;
     h1 {
         font-family: 'Permanent Marker', cursive;
     }
@@ -14,7 +14,7 @@ div.segment {
 const CityImgWrapper = styled.div`
 img {
     width: 80vw;
-    border-radius: 3%;
+    box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.8);
     margin-bottom: 50px;
 }
 
