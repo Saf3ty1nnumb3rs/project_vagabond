@@ -17,13 +17,13 @@ injectGlobal`
 
 class App extends Component {
   state = {
-    cities: [{
-        id: ''
-      }],
+    cities: [
+        
+      ],
     cityname: "",
     error: ""
   };
-
+  
   componentDidMount() {
     this.getAllCities();
   }

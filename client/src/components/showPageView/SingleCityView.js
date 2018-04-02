@@ -18,17 +18,25 @@ class SingleCityView extends Component {
     posts: [],
     showCreatePost: false
   };
-
+  
+  componentWillReceiveProps(nextProps){
+    if ( nextProps != this.props){
+      this.getSingleCity(nextProps.match.params.id);
+    } 
+    
+    
+    console.log(nextProps)
+    console.log(this.props)
+  }
   componentDidMount() {
-    this.getSingleCity();
+    this.getSingleCity(this.props.match.params.id);
   }
 
   toggleShowAdd = () => {
     this.setState({ showCreatePost: !this.state.showCreatePost });
   };
 
-  getSingleCity = async () => {
-    const cityId = this.props.match.params.id;
+  getSingleCity = async (cityId) => {
     const res = await axios.get(`/api/cities/${cityId}`);
     this.setState({
       city: res.data.city,
