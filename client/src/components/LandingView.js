@@ -11,7 +11,7 @@ width: 100vw;
 .letter-box {
     display: flex;
 	position: fixed;
-	top: 26vh;
+	top: 20vh;
 	color: white;
 	margin: 0 10vw 20vw 50vw;
 	background-color: #88888875;
