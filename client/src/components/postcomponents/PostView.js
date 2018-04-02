@@ -6,13 +6,13 @@ import {  Image, Button, Card, Icon } from "semantic-ui-react";
 
 const PostWrap = styled.div`
   max-width: 40vw;
-  height: auto;
-  min-height: 430px;
+  max-height: 500px;
   min-width: 300px;
   margin: 10px auto;
   align-content: center;
   div.card {
-    min-height: 430px;
+    min-height: 540px;
+    max-height: 540px;
     div.pad {
       margin: 20px 15px;
     }

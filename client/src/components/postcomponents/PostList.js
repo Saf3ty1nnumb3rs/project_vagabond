@@ -5,7 +5,6 @@ import { Grid, Segment } from "semantic-ui-react";
 
 const FlexPosts = styled.div`
   display: flex;
-  /* flex-flow: row-reverse wrap-reverse; */
   justify-content: space-around;
   align-items: flex-start;
   align-content: flex-start;
@@ -18,12 +17,11 @@ class PostList extends Component {
   render() {
     return (
       <FlexPosts>
-        <Segment>
+       
           <Grid stackable>
             {this.props.posts.map((post, i) => {
               return (
-               
-                 
+                          
                   <PostComponent
                     handlePostChange={this.props.handlePostChange}
                     key={post.id}
@@ -33,11 +31,10 @@ class PostList extends Component {
                     getSingleCity = {this.props.getSingleCity}
                   />
                   
-                
               );
             })}
           </Grid>
-        </Segment>
+       
       </FlexPosts>
     );
   }

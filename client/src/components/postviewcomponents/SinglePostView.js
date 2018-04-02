@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const PostWrap = styled.div`
   width: 80vw;
-
   margin: 30px auto;
   div.card {
     min-height: 50vh;
