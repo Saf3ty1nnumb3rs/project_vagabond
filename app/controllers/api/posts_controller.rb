@@ -1,18 +1,22 @@
 class Api::PostsController < ApplicationController
+    before_action :def_post, only: [:show, :update, :destroy]
+
 
     def index
-        @posts = City.find(params[:city_id]).posts
-        render json: {
-            posts: @posts
-        }
+        @posts = City.find(params[:city_id]).posts.order(id: :desc)
+        render json: @posts
+        
     end
 
     def show
-        @city_posts = City.find(params[:city_id]).posts
-        @post = @city_posts.find(params[:id])
+        # @city_posts = City.find(params[:city_id]).posts
+        # @post = @city_posts.find(params[:id])
+        @city_name = City.find(params[:city_id]).name
         render json: {
-            post: @post
+            post: @post,
+            city_name: @city_name
         }
+
     end
 
     def create
@@ -25,20 +29,23 @@ class Api::PostsController < ApplicationController
     end
 
     def update
-        @city_posts = City.find(params[:city_id]).posts
-        @post = @city_posts.find(params[:id])
-        @new_post = @post.update!(post_params)
+       
+       @post.update!(post_params)
         render json: {
-            post: @new_post
+            post: @post
         }
     end
 
     def destroy
-        @city_posts = City.find(params[:city_id]).posts
-        @city_posts.find(params[:id]).destroy  
+       @post.destroy  
     end  
     
     private
+
+  def def_post
+        @post = Post.find(params[:id])
+  end
+
 
   def post_params
     params.require(:post).permit(:title, :img, :content, :city_id)

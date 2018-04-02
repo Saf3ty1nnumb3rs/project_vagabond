@@ -8,7 +8,7 @@ const PostWrap = styled.div`
 
   margin: 30px auto;
   div.card {
-   min-height: 50vh;
+    min-height: 50vh;
   }
   div.header {
     height: 45px;
@@ -25,7 +25,8 @@ const PostWrap = styled.div`
 
 class SinglePostView extends Component {
   state = {
-    post: {}
+    post: {},
+    city_name: ""
   };
 
   componentDidMount() {
@@ -40,47 +41,53 @@ class SinglePostView extends Component {
     const res = await axios.get(`/api/cities/${cityId}/posts/${postId}`);
     console.log(res.data);
     this.setState({
-      post: res.data.post
+      post: res.data.post,
+      city_name: res.data.city_name
     });
   };
 
   goHome = () => {
-      this.props.history.push("/")
-  }
+    this.props.history.push("/");
+  };
 
   goBackToCity = () => {
     this.props.history.push(`/cities/${this.props.match.params.citiesId}`);
-  }
+  };
 
   render() {
     return (
-      <PostWrap>
-        <Grid stackable columns={2}>
-          <Grid.Column>
-            <Segment>
-              <Image fluid src={this.state.post.img} />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column>
-            <Card raised centered fluid>
-              <Card.Content>
-              <Card.Header>
-                  <span id="post-head">{this.state.post.title}</span>
-                </Card.Header>
-                <Card.Description>{this.state.post.content}</Card.Description>
+     
 
-                
-              </Card.Content>
-              <Card.Content extra>
-                <div className="ui two buttons">
-                  <Button onClick={this.goHome} primary>Home</Button>
-                  <Button onClick={this.goBackToCity} color="green">City</Button>
-                </div>
-              </Card.Content>
-            </Card>
-          </Grid.Column>
-        </Grid>
-      </PostWrap>
+        <PostWrap>
+          <Grid stackable columns={2}>
+            <Grid.Column>
+              <Segment>
+                <Image fluid src={this.state.post.img} />
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Card raised centered fluid>
+                <Card.Content>
+                  <Card.Header>
+                    <span id="post-head">{this.state.post.title}</span>
+                  </Card.Header>
+                  <Card.Description>{this.state.post.content}</Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <div className="ui two buttons">
+                    <Button onClick={this.goHome} primary>
+                      Home
+                    </Button>
+                    <Button onClick={this.goBackToCity} color="green">
+                      City
+                    </Button>
+                  </div>
+                </Card.Content>
+              </Card>
+            </Grid.Column>
+          </Grid>
+        </PostWrap>
+     
     );
   }
 }
