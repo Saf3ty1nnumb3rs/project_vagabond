@@ -9,8 +9,7 @@ class Api::PostsController < ApplicationController
     end
 
     def show
-        # @city_posts = City.find(params[:city_id]).posts
-        # @post = @city_posts.find(params[:id])
+       
         @city_name = City.find(params[:city_id]).name
         render json: {
             post: @post,

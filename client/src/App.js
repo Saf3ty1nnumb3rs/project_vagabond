@@ -13,6 +13,13 @@ import SinglePostView from "./components/postviewcomponents/SinglePostView"
 
 injectGlobal`
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+*, :after, :before {
+    box-sizing: inherit;
+}
+html, body {
+        height: 100%;
+        margin: 0;
+      }
 `
 
 class App extends Component {

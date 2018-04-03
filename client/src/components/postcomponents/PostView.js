@@ -15,6 +15,7 @@ const PostWrap = styled.div`
     max-height: 540px;
     img {
       max-height: 197px;
+      border-radius: 3px;
     }
   }
 `;

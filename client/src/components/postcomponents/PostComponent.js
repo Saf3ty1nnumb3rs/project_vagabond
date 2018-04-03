@@ -3,9 +3,11 @@ import axios from "axios";
 import PostEditView from "./PostEditView";
 import PostView from "./PostView"
 import DeleteView from "./DeleteView"
+import styled from 'styled-components'
 
-
-
+const PostWrapper = styled.div`
+  margin: 30px auto;
+`
 
 
 class PostComponent extends Component {
@@ -65,7 +67,7 @@ class PostComponent extends Component {
 
   render() {
     return (
-      <div>
+      <PostWrapper className="bottom-buffer">
         {this.state.showEdit ? (
           <PostEditView
             toggleShowEdit={this.toggleShowEdit}
@@ -104,7 +106,7 @@ class PostComponent extends Component {
           /> ) : (
             null
           )}
-          </div>
+          </PostWrapper>
         )}
      
     

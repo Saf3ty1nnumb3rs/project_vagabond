@@ -18,7 +18,7 @@ const PostWrap = styled.div`
   }
 
   div.description {
-    float: right;
+   
   }
 `;
 
@@ -65,12 +65,12 @@ class SinglePostView extends Component {
               </Segment>
             </Grid.Column>
             <Grid.Column>
-              <Card raised centered fluid>
-                <Card.Content>
+              <Card raised centered fluid >
+                <Card.Content textAlign='center'>
                   <Card.Header>
                     <span id="post-head">{this.state.post.title}</span>
                   </Card.Header>
-                  <Card.Description>{this.state.post.content}</Card.Description>
+                  <Card.Description textAlign='center'>{this.state.post.content}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                   <div className="ui two buttons">

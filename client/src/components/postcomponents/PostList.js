@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PostComponent from "./PostComponent";
 import styled from "styled-components";
-import { Grid, Segment } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 const FlexPosts = styled.div`
   display: flex;
