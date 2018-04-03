@@ -10,7 +10,6 @@ const ButtonWrap = styled.div`
   text-align: center;
   margin: 28px auto;
 `;
-const HeaderWrapper = styled.div
 
 class SingleCityView extends Component {
   state = {

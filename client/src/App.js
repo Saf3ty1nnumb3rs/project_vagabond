@@ -16,6 +16,9 @@ injectGlobal`
 *, :after, :before {
     box-sizing: inherit;
 }
+body {
+  
+}
 `
 
 class App extends Component {
