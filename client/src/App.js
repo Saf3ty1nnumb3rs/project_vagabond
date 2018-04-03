@@ -16,9 +16,10 @@ injectGlobal`
 *, :after, :before {
     box-sizing: inherit;
 }
-body {
-  
-}
+html, body {
+        height: 100%;
+        margin: 0;
+      }
 `
 
 class App extends Component {
