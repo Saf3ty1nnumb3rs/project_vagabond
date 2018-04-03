@@ -13,8 +13,8 @@ const PostWrap = styled.div`
   div.card {
     min-height: 540px;
     max-height: 540px;
-    div.pad {
-      margin: 20px 15px;
+    img {
+      max-height: 197px;
     }
   }
 `;
@@ -34,12 +34,9 @@ class PostView extends Component {
               {this.props.posts[this.props.index].title}
             </Card.Header>
             <Link to={`/cities/${this.props.posts[this.props.index].city_id}/posts/${this.props.posts[this.props.index].id}`}>
-            <Image>
-              <img
-                src={this.props.posts[this.props.index].img}
-                alt={this.props.posts[this.props.index].title}
-              />
-            </Image>
+            <Image src={this.props.posts[this.props.index].img}
+                alt={this.props.posts[this.props.index].title}/>
+             
             </Link>
             <Card.Description>
               {this.props.posts[this.props.index].content}
