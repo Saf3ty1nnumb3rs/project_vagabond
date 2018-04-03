@@ -22,6 +22,10 @@ const LandingWrap = styled.div`
     span {
       font-family: "Permanent Marker", cursive;
     }
+    @media (max-width: 510px) {
+    top: 36vh;
+    margin: auto;
+  }
   }
 `;
 
