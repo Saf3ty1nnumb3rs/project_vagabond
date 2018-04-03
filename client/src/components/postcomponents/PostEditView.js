@@ -11,11 +11,17 @@ const PostWrap = styled.div`
   margin: 10px auto;
   align-content: center;
   div.card {
-    min-height: 430px;
+    min-height: 540px;
+    max-height: 540px;
     div.pad {
       margin: 20px 15px;
+      img.image {
+          max-height: 197px;
+          border-radius: 3px;
+  }
     }
   }
+  
 `;
 
 const ButtonWrap = styled.div`
@@ -66,9 +72,8 @@ class PostEditView extends Component {
                     onChange={this.handleChange}
                     onBlur={() => this.updatePost(this.props.posts)}
                   />
-                  <Image centered fluid>
-                    <img src={this.props.posts[this.props.index].img} alt="" />
-                  </Image>
+                  <Image centered fluidclassName='image' src={this.props.posts[this.props.index].img} alt={this.props.posts[this.props.index].title} />
+                    
                   <br />
                   <TextArea
                     size="massive"

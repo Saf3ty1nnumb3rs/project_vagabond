@@ -12,7 +12,11 @@ const PostWrap = styled.div`
   div.card {
     min-height: 540px;
     div.pad {
-      margin: 50px 2px;
+      p{
+        font-size: 20px;
+        margin: 150px 12px;
+      }
+      
     }
   }
 `;
@@ -32,7 +36,7 @@ class DeleteView extends Component {
         <Card centered raised>
           <div className="pad">
             <p>
-              Are you sure you want to delete {this.props.posts[this.props.index].title} ?
+              Are you sure you want to delete '{this.props.posts[this.props.index].title}' ?
             </p>
           </div>
           <ButtonWrap>
