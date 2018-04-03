@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Button, Dropdown, Menu } from "semantic-ui-react";
 
-
 const NavWrap = styled.div`
   display: flex;
   justify-content: space-between;
@@ -22,7 +21,7 @@ const LogoWrap = styled.div`
   justify-content: space-around;
   margin-left: 10vw;
   h1 {
-    font-family: 'Permanent Marker', cursive;
+    font-family: "Permanent Marker", cursive;
     font-size: 48px;
   }
 `;
@@ -37,7 +36,8 @@ const NavLinkWrap = styled.div`
   height: 6vw;
   align-items: center;
   .inner-nav {
-   height: 44px;
+    height: 44px;
+    color: white;
   }
   a.white-letter {
     color: white;
@@ -65,22 +65,26 @@ class Navbar extends Component {
         </LogoWrap>
         <NavLinkWrap>
           <Button color="purple" className="inner-nav">
-            <Link className="white-letter" to="/">Login</Link>
+            <Link className="white-letter" to="/">
+              Login
+            </Link>
           </Button>
-          <Button color="purple" className="inner-nav">
-            <Link className="white-letter" to="#">Sign Up</Link>
+          <Button color="purple" className="inner-nav white-letter" onClick={this.props.toggleShowLogin}>
+            Sign Up
           </Button>
           <Menu color="purple" compact>
-    <Dropdown button item text='Cities' color="purple">
-      <Dropdown.Menu color="purple">
-        {this.props.cities.map((city) => {
-          return(
-            <Dropdown.Item as={Link} to={`/cities/${city.id}`}>{city.name}</Dropdown.Item>
-        )
-        })}
-      </Dropdown.Menu>
-    </Dropdown>
-  </Menu>
+            <Dropdown button item text="Cities" color="purple">
+              <Dropdown.Menu color="purple">
+                {this.props.cities.map(city => {
+                  return (
+                    <Dropdown.Item as={Link} to={`/cities/${city.id}`}>
+                      {city.name}
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu>
         </NavLinkWrap>
       </NavWrap>
     );
