@@ -23,7 +23,7 @@ class PostComponent extends Component {
         this.props.posts[this.props.index].id
       }`
     );
-    await this.props.getSingleCity();
+    await this.props.getSingleCity(this.props.cityId);
   };
 
   toggleShowPost = () => {

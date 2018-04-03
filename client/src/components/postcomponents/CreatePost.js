@@ -68,7 +68,7 @@ class CreatePost extends Component {
     //4. Execute the call to SHOW the post
 
     //5. Make sure all posts are pulled from the database
-    await this.props.getSingleCity();
+    await this.props.getSingleCity(this.props.cityId);
     //6. Clear state so your form is empty once again
     await this.setState({
       new: { title: "", content: "", img: "" },
