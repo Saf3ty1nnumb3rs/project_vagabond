@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Button, Dropdown, Menu } from "semantic-ui-react";
 
-
 const NavWrap = styled.div`
   display: flex;
   justify-content: space-between;
@@ -11,7 +10,9 @@ const NavWrap = styled.div`
   box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.8);
   align-items: center;
   z-index: 1000;
-
+  @media (max-width: 510px) {
+    height: 40vw;
+  }
   a {
     color: white;
   }
@@ -22,9 +23,15 @@ const LogoWrap = styled.div`
   justify-content: space-around;
   margin-left: 10vw;
   h1 {
-    font-family: 'Permanent Marker', cursive;
+    font-family: "Permanent Marker", cursive;
     font-size: 48px;
+    @media (max-width: 510px) {
+      font-size: 40px;
+    }
   }
+  @media (max-width: 510px) {
+    margin-left: 3vw
+}
 `;
 
 const NavLinkWrap = styled.div`
@@ -36,8 +43,18 @@ const NavLinkWrap = styled.div`
   color: white;
   height: 6vw;
   align-items: center;
+  @media (max-width: 510px) {
+      height: auto;
+      width: 92px;
+      display: block;
+    margin-right: 3vw;   
+    }
   .inner-nav {
-   height: 44px;
+    height: 44px;
+    color: white;
+    @media (max-width: 510px){
+    margin-bottom: 200px;
+  }  
   }
   a.white-letter {
     color: white;
@@ -57,30 +74,34 @@ class Navbar extends Component {
   render() {
     return (
       <NavWrap>
-        <LogoWrap>
+        <LogoWrap className="media">
           <Link to="/">
             <h1>Vagabond</h1>
           </Link>
           <h1>{!this.props.city_name ? null : this.props.city_name}</h1>
         </LogoWrap>
         <NavLinkWrap>
-          <Button color="purple" className="inner-nav">
-            <Link className="white-letter" to="/">Login</Link>
+          <Button fluid color="purple" className="inner-nav">
+            <Link className="white-letter" to="/">
+              Login
+            </Link>
           </Button>
-          <Button color="purple" className="inner-nav">
-            <Link className="white-letter" to="#">Sign Up</Link>
+          <Button fluid color="purple" className="inner-nav white-letter" onClick={this.props.toggleShowLogin}>
+            Sign Up
           </Button>
           <Menu color="purple" compact>
-    <Dropdown button item text='Cities' color="purple">
-      <Dropdown.Menu color="purple">
-        {this.props.cities.map((city) => {
-          return(
-            <Dropdown.Item as={Link} to={`/cities/${city.id}`}>{city.name}</Dropdown.Item>
-        )
-        })}
-      </Dropdown.Menu>
-    </Dropdown>
-  </Menu>
+            <Dropdown button item text="Cities" color="purple">
+              <Dropdown.Menu color="purple">
+                {this.props.cities.map(city => {
+                  return (
+                    <Dropdown.Item as={Link} to={`/cities/${city.id}`}>
+                      {city.name}
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu>
         </NavLinkWrap>
       </NavWrap>
     );
