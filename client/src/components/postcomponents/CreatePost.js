@@ -42,6 +42,7 @@ class CreatePost extends Component {
     redirect: false
   };
 
+  
   handleChange = event => {
     //1. Set variable to event target
     const name = event.target.name;
@@ -74,6 +75,7 @@ class CreatePost extends Component {
       new: { title: "", content: "", img: "" },
       redirect: true
     });
+
     this.props.toggleShowAdd();
   };
 
@@ -96,6 +98,7 @@ class CreatePost extends Component {
                 type="text"
                 placeholder="Subject"
                 value={this.state.title}
+                required
               />
               <Form.Input
                 className="inputs"
@@ -113,6 +116,8 @@ class CreatePost extends Component {
                 placeholder="Comment"
                 type="text"
                 value={this.state.content}
+                maxLength='200'
+                required
               />
 
               <ButtonWrap>
