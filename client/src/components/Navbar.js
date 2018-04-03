@@ -36,7 +36,12 @@ const NavLinkWrap = styled.div`
   color: white;
   height: 6vw;
   align-items: center;
-
+  .inner-nav {
+   height: 44px;
+  }
+  a.white-letter {
+    color: white;
+  }
   a {
     text-align: center;
     color: black;
@@ -60,10 +65,10 @@ class Navbar extends Component {
         </LogoWrap>
         <NavLinkWrap>
           <Button color="purple" className="inner-nav">
-            <Link to="/">Login</Link>
+            <Link className="white-letter" to="/">Login</Link>
           </Button>
           <Button color="purple" className="inner-nav">
-            <Link to="#">Sign Up</Link>
+            <Link className="white-letter" to="#">Sign Up</Link>
           </Button>
           <Menu color="purple" compact>
     <Dropdown button item text='Cities' color="purple">
