@@ -13,17 +13,23 @@ const FormWrap = styled.div`
   align-content: center;
   div.card {
     min-height: 540px;
+    max-height: 540px;
     background-color: lightgray;
    
     div.pad {
       margin: 50px 2px;
+      input {
+        margin: 20px auto;
+        height: 60px;
+      }
     }
+    
   }
 `;
 
 const ButtonWrap = styled.div`
   text-align: center;
-  margin: 20px auto;
+  margin: 45px auto;
 `;
 
 class CreatePost extends Component {
@@ -47,12 +53,6 @@ class CreatePost extends Component {
     this.setState( { new: newPost });
   };
 
-  // redirectToTarget = () => {
-  //   const cityId = this.props.cityId
-  //   console.log(this.props.cityId);
-  //   console.log(this.props.posts)
-  //   this.props.history.push(`/cities/${cityId}/posts`);
-  // }
 
   createNewPost = async event => {
     //1. Stop form from submitting
@@ -106,6 +106,7 @@ class CreatePost extends Component {
               />
 
               <TextArea
+                large
                 className="inputs"
                 name="content"
                 onChange={this.handleChange}
